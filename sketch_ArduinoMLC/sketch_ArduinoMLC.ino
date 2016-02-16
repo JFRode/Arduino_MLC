@@ -26,12 +26,66 @@ boolean pressedAdd = false;
 boolean pressedSub = false;
 boolean pressedSwitch = false;
 
+byte manaCharacters[5][8] = {{
+  // White
+  B00000,
+  B10101,
+  B01110,
+  B11111,
+  B01110,
+  B10101,
+  B00000,
+  B00000
+}, {
+  // Blue
+  B01000,
+  B00100,
+  B01110,
+  B11111,
+  B11011,
+  B11001,
+  B01110,
+  B00000
+}, {
+  // Black
+  B00000,
+  B01110,
+  B10101,
+  B10101,
+  B11011,
+  B01110,
+  B10101,
+  B00000
+}, {
+  // Red
+  B01100,
+  B00010,
+  B00001,
+  B01101,
+  B11011,
+  B11101,
+  B10110,
+  B01100
+}, {
+  // Green
+  B01010,
+  B10101,
+  B01110,
+  B10101,
+  B01110,
+  B00100,
+  B00100,
+  B00000
+}};
+
 
 void setup() {
-  lcd.begin(16, 2);
   pinMode(buttonAdd, INPUT);
   pinMode(buttonSub, INPUT);
   pinMode(buttonSwitch, INPUT);
+  lcd.begin(16, 2);
+  for (int i = 0; i < 5; i++) lcd.createChar(i+1, manaCharacters[i]);
+  introduction();
   reprint();
 }
  
@@ -81,9 +135,24 @@ void loop() {
 void reprint() {
   lcd.clear();
   
-  lcd.setCursor(0, 0);
+  lcd.setCursor(7, 0);
   lcd.print(player1);
   
-  lcd.setCursor(0, 1);
+  lcd.setCursor(7, 1);
   lcd.print(player2);
+}
+
+void introduction() {
+  lcd.setCursor(0, 0);
+  lcd.print("Concatto &");
+  lcd.setCursor(7, 2);
+  lcd.print("JFRode");
+  delay(2500);
+  lcd.clear();
+  
+  lcd.setCursor(0, 0);
+  lcd.print("MagicLifeCounter");
+  lcd.setCursor(5, 1);
+  for (int i=1; i <= 5; i++)  lcd.write(i);
+  delay(5500);
 }
