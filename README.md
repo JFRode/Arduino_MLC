@@ -15,6 +15,3 @@ It has three buttons. One for addition, one for subtraction and one for switchin
 
 ###Schematics
 ![MLC_schematic](../master/schematic.png?raw=true)
-
-
-###TO DO
